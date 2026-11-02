@@ -1,0 +1,34 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pricepirate-shopify",
+  "version": "0.1.0",
+  "description": "Set up and run PricePirate for Shopify: import products, connect marketplace listings, design pricing strategies and review price changes.",
+  "author": {
+    "name": "PricePirate",
+    "url": "https://pricepirate.com"
+  },
+  "homepage": "https://pricepirate.com",
+  "repository": "https://github.com/pricepirate/agent-skills",
+  "license": "MIT",
+  "keywords": ["shopify", "repricing", "idealo", "google-shopping", "pricing"],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/pricepirate-shopify/SKILL.md",
+      "interface": {
+        "displayName": "PricePirate for Shopify",
+        "shortDescription": "Repricing for Shopify stores on Idealo and Google Shopping",
+        "developerName": "PricePirate",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://pricepirate.com",
+        "privacyPolicyURL": "https://pricepirate.com/en/legal/privacy/",
+        "termsOfServiceURL": "https://pricepirate.com/en/legal/terms/",
+        "defaultPrompt": [
+          "Which of my Shopify products are not in PricePirate yet?",
+          "Import all products of brand Garmin and connect them to Idealo.",
+          "Suggest a pricing strategy with a 15% minimum margin."
+        ]
+      }
+    }
+  }
+}

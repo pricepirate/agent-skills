@@ -1,0 +1,46 @@
+name: Release plugin
+
+on:
+  push:
+    tags:
+      - "*-v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve plugin from tag
+        id: plugin
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          plugin="${tag%-v*}"
+          version="${tag##*-v}"
+          dir="plugins/${plugin}"
+          test -d "${dir}" || { echo "No plugin directory ${dir}"; exit 1; }
+          for manifest in "${dir}/plugin.json" "${dir}/.claude-plugin/plugin.json"; do
+            actual="$(jq -r .version "${manifest}")"
+            test "${actual}" = "${version}" || { echo "${manifest} has version ${actual}, tag says ${version}"; exit 1; }
+          done
+          echo "name=${plugin}" >> "$GITHUB_OUTPUT"
+          echo "dir=${dir}" >> "$GITHUB_OUTPUT"
+
+      - name: Build skill zip
+        run: |
+          # Claude expects <skill-name>/SKILL.md at the top level of the archive.
+          cd "${{ steps.plugin.outputs.dir }}/skills"
+          zip -r "${GITHUB_WORKSPACE}/${{ steps.plugin.outputs.name }}-skill.zip" .
+          unzip -l "${GITHUB_WORKSPACE}/${{ steps.plugin.outputs.name }}-skill.zip"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            "${{ steps.plugin.outputs.name }}-skill.zip" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes

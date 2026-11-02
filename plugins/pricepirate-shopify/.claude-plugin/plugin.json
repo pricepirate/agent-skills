@@ -1,0 +1,16 @@
+{
+  "name": "pricepirate-shopify",
+  "displayName": "PricePirate for Shopify",
+  "version": "0.1.0",
+  "description": "Set up and run PricePirate for Shopify: import products, connect marketplace listings, design pricing strategies and review price changes.",
+  "author": {
+    "name": "PricePirate",
+    "url": "https://pricepirate.com"
+  },
+  "homepage": "https://pricepirate.com",
+  "repository": "https://github.com/pricepirate/agent-skills",
+  "privacyPolicyUrl": "https://pricepirate.com/en/legal/privacy/",
+  "termsOfServiceUrl": "https://pricepirate.com/en/legal/terms/",
+  "license": "MIT",
+  "keywords": ["shopify", "repricing", "idealo", "google-shopping", "pricing"]
+}

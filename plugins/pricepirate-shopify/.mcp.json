@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "pricepirate-shopify": {
+      "type": "http",
+      "url": "https://app.pricepirate.com/mcp"
+    }
+  }
+}

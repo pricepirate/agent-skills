@@ -1,0 +1,20 @@
+{
+  "name": "pricepirate",
+  "interface": {
+    "displayName": "PricePirate"
+  },
+  "plugins": [
+    {
+      "name": "pricepirate-shopify",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pricepirate-shopify"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

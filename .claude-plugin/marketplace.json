@@ -1,0 +1,15 @@
+{
+  "name": "pricepirate",
+  "description": "PricePirate skills and MCP plugins",
+  "owner": {
+    "name": "PricePirate",
+    "url": "https://pricepirate.com"
+  },
+  "plugins": [
+    {
+      "name": "pricepirate-shopify",
+      "source": "./plugins/pricepirate-shopify",
+      "description": "Set up and run PricePirate for Shopify: import products, connect marketplace listings, design pricing strategies and review price changes."
+    }
+  ]
+}
