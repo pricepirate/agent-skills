@@ -42,7 +42,8 @@ Connector only: under [**Customize → Connectors**](https://claude.ai/customize
 
 ### ChatGPT
 
-1. Under **Settings → Apps → Advanced**, turn on developer mode and create an app with the URL `https://app.pricepirate.com/mcp`. Connect and approve access in Shopify.
+1. Open [**Plugins**](https://chatgpt.com/plugins), click **Add → Add custom MCP server**, name it `PricePirate` and paste the server URL `https://app.pricepirate.com/mcp`. Keep **OAuth**, tick **I understand and want to continue** and click **Create as a plugin**.
+2. Connect and approve access in Shopify. This works on every ChatGPT plan, including Free.
 
 ### Other coding agents
 
