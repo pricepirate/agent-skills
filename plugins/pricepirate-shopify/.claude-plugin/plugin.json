@@ -9,8 +9,10 @@
   },
   "homepage": "https://pricepirate.com",
   "repository": "https://github.com/pricepirate/agent-skills",
+  "documentationUrl": "https://github.com/pricepirate/agent-skills/tree/main/plugins/pricepirate-shopify",
   "privacyPolicyUrl": "https://pricepirate.com/en/legal/privacy/",
   "termsOfServiceUrl": "https://pricepirate.com/en/legal/terms/",
+  "icon": "./assets/icon.png",
   "license": "MIT",
   "keywords": ["shopify", "repricing", "idealo", "google-shopping", "pricing"]
 }

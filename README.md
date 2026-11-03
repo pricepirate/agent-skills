@@ -31,10 +31,14 @@ codex plugin marketplace add pricepirate/agent-skills
 
 Install `pricepirate-shopify` from the plugin list and sign in when asked.
 
-### Claude (web, desktop, mobile)
+### Claude (web, desktop, Cowork)
 
-1. Open [**Customize → Connectors**](https://claude.ai/customize/connectors), click **+ Add → Add custom connector**, name it `PricePirate` and paste the URL `https://app.pricepirate.com/mcp`. Click **Connect** and approve access in Shopify. On Team and Enterprise plans, an Owner adds the connector first.
-2. That's it: the server brings its own guide (the `get_guide` tool) and prompts such as "PricePirate einrichten" in the **+** menu, so no skill upload is needed.
+1. Open [**Customize → Plugins**](https://claude.ai/customize/plugins), click **Add → Add marketplace** and enter `pricepirate/agent-skills`. Install **PricePirate for Shopify**.
+2. Open the plugin's **Connectors** tab, connect PricePirate and approve access in Shopify. On Team and Enterprise plans, an Owner adds the connector first.
+
+The plugin brings the skill and the connector together. Prompts such as "PricePirate einrichten" appear in the **+** menu.
+
+Connector only: under [**Customize → Connectors**](https://claude.ai/customize/connectors), click **+ Add → Add custom connector**, name it `PricePirate` and paste `https://app.pricepirate.com/mcp`. The server brings its own guide (`get_guide`), so this works without the skill too.
 
 ### ChatGPT
 
@@ -57,7 +61,9 @@ plugins/<plugin>/
   plugin.json                     # portable manifest (Agent Plugins), OpenAI metadata
   mcp.json                        # portable MCP server config
   .claude-plugin/plugin.json      # Claude Code manifest
-  .mcp.json                       # Claude Code MCP server config
+  .mcp.json                       # Claude MCP server config
+  README.md                       # plugin description, shown in directory listings
+  assets/icon.png                 # plugin icon, 1024×1024
   skills/<skill>/SKILL.md
 ```
 
