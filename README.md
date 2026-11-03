@@ -10,6 +10,8 @@ Skills and MCP plugins that let AI assistants work with [PricePirate](https://pr
 
 Signing in runs through OAuth: your assistant opens a browser window, and you approve access to your store inside the PricePirate app in Shopify. You never copy an API key.
 
+The workflows and safety rules live in the server itself (`get_guide`), so every client gets the same, current guidance. The skill only teaches agents to load it.
+
 ## Install
 
 ### Claude Code
@@ -31,13 +33,12 @@ Install `pricepirate-shopify` from the plugin list and sign in when asked.
 
 ### Claude (web, desktop, mobile)
 
-1. Add the connector: **Settings → Connectors → Add custom connector**, name `PricePirate`, URL `https://app.pricepirate.com/mcp`. Click **Connect** and approve access in Shopify.
-2. Optional, adds the setup workflows: download `pricepirate-shopify-skill.zip` from the [latest release](https://github.com/pricepirate/agent-skills/releases) and upload it under **Customize → Skills → + → Upload a skill**.
+1. Open [**Customize → Connectors**](https://claude.ai/customize/connectors), click **+ Add → Add custom connector**, name it `PricePirate` and paste the URL `https://app.pricepirate.com/mcp`. Click **Connect** and approve access in Shopify. On Team and Enterprise plans, an Owner adds the connector first.
+2. That's it: the server brings its own guide (the `get_guide` tool) and prompts such as "PricePirate einrichten" in the **+** menu, so no skill upload is needed.
 
 ### ChatGPT
 
 1. Under **Settings → Apps → Advanced**, turn on developer mode and create an app with the URL `https://app.pricepirate.com/mcp`. Connect and approve access in Shopify.
-2. Optional, on plans with skills: upload `pricepirate-shopify-skill.zip` under **Skills → Create → Upload from your computer**.
 
 ### Other coding agents
 
