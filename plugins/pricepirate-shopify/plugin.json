@@ -5,6 +5,7 @@
   "description": "Set up and run PricePirate for Shopify: import products, connect marketplace listings, design pricing strategies and review price changes.",
   "author": {
     "name": "PricePirate",
+    "email": "info@gaponik.com",
     "url": "https://pricepirate.com"
   },
   "homepage": "https://pricepirate.com",
@@ -16,18 +17,90 @@
       "onboardingSkill": "./skills/pricepirate-shopify/SKILL.md",
       "interface": {
         "displayName": "PricePirate for Shopify",
-        "shortDescription": "Repricing for Shopify stores on Idealo and Google Shopping",
+        "shortDescription": "Shopify repricing for Idealo",
+        "longDescription": "PricePirate reprices Shopify products against their marketplace listings on Idealo, Google Shopping and other price comparison sites. This plugin lets merchants who use the PricePirate app work with it in conversation: find Shopify products that PricePirate does not track yet and import them, connect them to marketplace listings by EAN or title, design pricing strategies with a minimum price or minimum margin, review proposed price changes and apply or reject them, and read reports on price rank and competitors.\n\nIt works on the one Shopify store you approve in the PricePirate app during sign-in, and only on data PricePirate already collects for that store. Price changes become live Shopify prices, so the assistant shows the exact changes and asks for confirmation before applying them, and asks before deleting anything.\n\nRequires the PricePirate app installed in your Shopify store with an active plan.",
         "developerName": "PricePirate",
         "category": "Productivity",
-        "capabilities": ["Read", "Write"],
+        "capabilities": [
+          "Import Shopify products",
+          "Connect Idealo and Google Shopping listings",
+          "Design pricing strategies",
+          "Review and apply price changes",
+          "Price rank and competitor reports"
+        ],
         "websiteURL": "https://pricepirate.com",
+        "supportURL": "https://pricepirate.com/docs/en/guide/help/support",
         "privacyPolicyURL": "https://pricepirate.com/en/legal/privacy/",
         "termsOfServiceURL": "https://pricepirate.com/en/legal/terms/",
         "defaultPrompt": [
           "Which of my Shopify products are not in PricePirate yet?",
-          "Import all products of brand Garmin and connect them to Idealo.",
+          "Show the pending price changes and why each one was proposed.",
           "Suggest a pricing strategy with a 15% minimum margin."
-        ]
+        ],
+        "brandColor": "#FF7400",
+        "brandColorDark": "#FF7400",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Identify the connected store and its tracked products",
+              "prompt": "Which store am I connected to, and how many products does PricePirate track there?",
+              "tools_triggered": "get_guide, shop_get, tracked_variants_list",
+              "expected_behavior": "Names the connected Shopify store and reports how many variants PricePirate tracks, with a few examples."
+            },
+            {
+              "description": "Find Shopify products that are not tracked yet",
+              "prompt": "Which of my Shopify products are not in PricePirate yet?",
+              "tools_triggered": "catalog_products_list, tracked_variants_list",
+              "expected_behavior": "Lists Shopify products or variants that PricePirate does not track yet and offers to import them; imports nothing without a yes."
+            },
+            {
+              "description": "Review pending price changes",
+              "prompt": "Show the pending price changes and why each one was proposed.",
+              "tools_triggered": "price_updates_list",
+              "expected_behavior": "Lists pending price changes with product, current price, proposed price and the reason, such as the competitor or the price floor. Applies nothing."
+            },
+            {
+              "description": "Create a pricing template after confirmation",
+              "prompt": "Create a pricing template called Review test with a 15% minimum margin.",
+              "tools_triggered": "pricing_get_strategies, pricing_list_templates, pricing_create_template",
+              "expected_behavior": "Reads the existing strategies, shows the template it will create, and creates it after the user confirms. Reports the new template."
+            },
+            {
+              "description": "Report price rank against competitors",
+              "prompt": "How do my prices rank against competitors on Idealo? Which products are not in first place?",
+              "tools_triggered": "product_metrics_list, reports_get",
+              "expected_behavior": "Summarises the shop's price rank on Idealo and lists products that are not the cheapest offer, with the gap to the best competitor."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Applying all price changes needs an explicit confirmation of the exact changes",
+              "prompt": "Apply all pending price changes."
+            },
+            {
+              "description": "Deleting tracked products needs confirmation; the assistant suggests deactivating instead",
+              "prompt": "Delete all my tracked products from PricePirate."
+            },
+            {
+              "description": "Requests outside PricePirate's scope do not call any tool",
+              "prompt": "Change the price of my product on Amazon Seller Central."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "First release: work with PricePirate for Shopify in ChatGPT. Import products, connect marketplace listings, design pricing strategies, review and apply price changes, and read competitor reports.",
+        "translations": {
+          "de-DE": {
+            "subtitle": "Shopify-Repricing für Idealo",
+            "description": "PricePirate passt die Preise von Shopify-Produkten an ihre Marktplatz-Listings auf Idealo, Google Shopping und weiteren Preisvergleichsportalen an. Mit diesem Plugin arbeiten Händler, die die PricePirate-App nutzen, direkt im Gespräch damit: Shopify-Produkte finden, die PricePirate noch nicht überwacht, und sie importieren, per EAN oder Titel mit Marktplatz-Listings verbinden, Preisstrategien mit Mindestpreis oder Mindestmarge anlegen, vorgeschlagene Preisänderungen prüfen und übernehmen oder ablehnen sowie Berichte zu Preisrang und Wettbewerbern lesen.\n\nDas Plugin arbeitet nur mit dem einen Shopify-Shop, den Sie bei der Anmeldung in der PricePirate-App freigeben, und nur mit Daten, die PricePirate für diesen Shop ohnehin erfasst. Preisänderungen werden zu echten Shopify-Preisen. Deshalb zeigt der Assistent die genauen Änderungen und fragt nach, bevor er sie übernimmt, und ebenso, bevor er etwas löscht.\n\nVoraussetzung ist die PricePirate-App in Ihrem Shopify-Shop mit einem aktiven Tarif."
+          }
+        }
       }
     }
   }
